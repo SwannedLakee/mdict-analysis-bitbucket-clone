@@ -20,7 +20,7 @@ jobs:
         run: git clone https://bitbucket.org/xwang/mdict-analysis.git
 
       - name: 7z install
-        run: sudo apt-get install 7z
+        run: sudo apt-get install p7zip-full
         
       - name: zip repo
         run: 7z a mdict-analysis mdict-analysis
