@@ -15,14 +15,16 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v3
-
-      - name: git clone
+        
+      - name: clone
         run: git clone https://bitbucket.org/xwang/mdict-analysis.git
-      - name: git rm
-        run: git rm --cached client
-      - name: git commit
-        run: git commit -m "remove client gitlink"
 
+      - name: 7z install
+        run: sudo apt-get install 7z
+        
+      - name: zip repo
+        run: 7z a mdict-analysis mdict-analysis
+        
       - name: Save
         if: always() # Forces this to run even if wget fails
         uses: stefanzweifel/git-auto-commit-action@v4
