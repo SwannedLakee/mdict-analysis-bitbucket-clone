@@ -6,6 +6,8 @@ on:
     - cron: '0 0 1 * *'
  
   workflow_dispatch: # on button click
+  
+  push:
 
 jobs:
   publish:
@@ -16,6 +18,10 @@ jobs:
 
       - name: git clone
         run: git clone https://bitbucket.org/xwang/mdict-analysis.git
+      - name: git rm
+        run: git rm --cached client
+      - name: git commit
+        run: git commit -m "remove client gitlink"
 
       - name: Save
         if: always() # Forces this to run even if wget fails
