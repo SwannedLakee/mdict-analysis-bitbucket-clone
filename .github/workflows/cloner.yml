@@ -1,0 +1,25 @@
+name: cloner
+
+on:
+
+  schedule:
+    - cron: '0 0 1 * *'
+ 
+  workflow_dispatch: # on button click
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: git clone
+        run: git clone https://bitbucket.org/xwang/mdict-analysis.git
+
+      - name: Save
+        if: always() # Forces this to run even if wget fails
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Saving...
+          file_pattern: '*'
